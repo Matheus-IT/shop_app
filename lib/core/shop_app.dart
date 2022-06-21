@@ -1,33 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/pages/product_detail_page.dart';
 
-import '../models/product.dart';
-import '../providers/product_provider.dart';
+import '../pages/product_overview_page.dart';
+import 'app_routes.dart';
 
 class ShopApp extends StatelessWidget {
   const ShopApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final products = ProductProvider.fetchProducts();
-    final children = List<Widget>.generate(
-      products.length,
-      (int index) => Container(
-        color: Colors.amber,
-        child: Text(products[index].name),
-      ),
-    );
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Loja Exemplo')),
-        body: GridView(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          children: children,
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          secondary: Colors.deepOrange,
         ),
+        fontFamily: 'Lato',
       ),
+      initialRoute: AppRoutes.productOverview,
+      routes: {
+        AppRoutes.productOverview: (context) => ProductOverviewPage(),
+        AppRoutes.productDetail: (context) => ProductDetailPage(),
+      },
     );
   }
 }

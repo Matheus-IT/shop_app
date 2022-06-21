@@ -4,6 +4,7 @@ class Product {
   final String description;
   final double price;
   final String imageUrl;
+  bool isFavorite = false;
 
   Product({
     required this.id,
@@ -12,4 +13,9 @@ class Product {
     required this.price,
     required this.imageUrl,
   });
+
+  bool toggleFavorite() {
+    isFavorite = !isFavorite;
+    return isFavorite;
+  }
 }
