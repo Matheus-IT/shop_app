@@ -1,0 +1,21 @@
+x 1.Extrair GridView
+x 2.Instalar Provider
+x 3.Explicar Provider/ChangeNotifier (padrão Observer)
+
+4.Estender ProductProvider com ChangeNotifier
+  - método addProduct()
+  - notifiListeners()
+5.Estender Product com ChangeNotifier
+6.ProductGrid
+  - Wrap ProductTile com ChangeNotifierProvider
+  - Usar param 'create'
+  - Remover param 'product' de ProductTile
+7.ProductTile
+  - onPressed -> product.toggleFavorite()
+8.ChangeNotifierProvider.value
+  - ProductProvider -> usar 'create'
+  - ProductGrid -> usar 'value'
+9.ProductTime
+  - Usar 'Consumer', alternativa ao Provider.of()
+  - Wrap ClipRRect com Consumer
+9.Provider.of(_,listen: true/false)

@@ -1,10 +1,11 @@
+import 'package:flutter/material.dart';
+
 import '../models/product.dart';
 import './dummy_products.dart';
 
-class ProductProvider {
-  static final List<Product> _products = dummyData;
+class ProductProvider extends ChangeNotifier {
+  // final List<Product> _products = List<Product>.from(dummyData);
+  final List<Product> _products = [...dummyData];
 
-  static List<Product> fetchProducts() {
-    return _products;
-  }
+  List<Product> get products => _products;
 }

@@ -11,8 +11,6 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final secondaryColor = Theme.of(context).colorScheme.secondary;
-    final favoriteIcon =
-        product.isFavorite ? Icons.favorite : Icons.favorite_border_outlined;
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
@@ -21,7 +19,9 @@ class ProductTile extends StatelessWidget {
           backgroundColor: Colors.black87,
           leading: IconButton(
             onPressed: () {},
-            icon: Icon(favoriteIcon),
+            icon: Icon(
+              product.isFavorite ? Icons.favorite : Icons.favorite_border,
+            ),
             color: secondaryColor,
           ),
           trailing: IconButton(
