@@ -1,0 +1,22 @@
+x 1.Extrair GridView
+x 2.Instalar Provider
+x 3.Explicar Provider/ChangeNotifier (padrão Observer)
+x 4.Estender ProductProvider com ChangeNotifier
+
+x 5.Marcar o produto como favorito
+  - Estender Product com ChangeNotifier
+  - Wrap ProductTile com ChangeNotifierProvider (usar param 'create')
+  - ProductTile: onPressed -> product.toggleFavorite()
+
+x 6.ChangeNotifierProvider.value
+  - ProductGrid -> diferença entre 'create' e 'value'
+
+7.ProductTile
+  - Usar 'Consumer', alternativa ao Provider.of()
+  - Wrap ClipRRect com Consumer
+  - Provider.of(_,listen: true/false)
+
+8.Menu Favoritos/Todos
+  - Scaffold.actions = [PopupMenuButton()]
+  - PopupMenuButton(itemBuilder: () => PopupMenuItem(value:0))
+  - ProductProvider._showFavorites
