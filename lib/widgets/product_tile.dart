@@ -10,9 +10,7 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final secondaryColor = Theme.of(context).colorScheme.secondary;
-    final product = Provider.of<Product>(context, listen: false);
-
-    debugPrint('ProductTile.build(${product.name})');
+    final product = Provider.of<Product>(context);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
@@ -21,7 +19,7 @@ class ProductTile extends StatelessWidget {
           backgroundColor: Colors.black87,
           leading: Consumer<Product>(
             builder: (context, prod, _) {
-              debugPrint('Product(${prod.name}, ${prod.isFavorite}');
+              //debugPrint('Product(${prod.name}, ${prod.isFavorite}');
               return IconButton(
                 onPressed: () {
                   product.toggleFavorite();

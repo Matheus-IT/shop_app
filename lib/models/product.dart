@@ -21,4 +21,7 @@ class Product extends ChangeNotifier {
     notifyListeners();
     return isFavorite;
   }
+
+  @override
+  String toString() => 'Product($name)';
 }

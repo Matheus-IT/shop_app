@@ -11,12 +11,27 @@ x 5.Marcar o produto como favorito
 x 6.ChangeNotifierProvider.value
   - ProductGrid -> diferença entre 'create' e 'value'
 
-7.ProductTile
+x 7.ProductTile
   - Usar 'Consumer', alternativa ao Provider.of()
   - Wrap ClipRRect com Consumer
   - Provider.of(_,listen: true/false)
 
-8.Menu Favoritos/Todos
+x 8.Menu Favoritos/Todos
   - Scaffold.actions = [PopupMenuButton()]
   - PopupMenuButton(itemBuilder: () => PopupMenuItem(value:0))
-  - ProductProvider._showFavorites
+  - Filtrar favoritos em ProductProvider (gerenciamento global)
+  - Filtrar favoritos localmente (Statefull)
+
+9. Carrinho e item do Carrinho
+  - Definir modelos Cart e CartItem
+  - Métodos para valor do carrinho, qtde de itens, etc
+  - Disponibilizar o carrinho na árvore (ChangeNotiferProvider x MultiProvider)
+  - Adicionar produto no carrinho ao clicar no ícone
+  - Adicionar ícone do carrinho do AppBar
+
+10. Criar badge sobre o ícone de carrinho
+  - Criar Badge widget (value, child, color)
+  - Usar Stack (align.center)
+  - Posicionar o child do Badge com Positioned
+  - Usar Container para exibir e estilizar o valor
+  - Atualizar badge quando o estado do carrinho mudar (Wrap Badge com Consumer)
