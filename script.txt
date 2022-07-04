@@ -21,17 +21,24 @@ x 8.Menu Favoritos/Todos
   - PopupMenuButton(itemBuilder: () => PopupMenuItem(value:0))
   - Filtrar favoritos em ProductProvider (gerenciamento global)
   - Filtrar favoritos localmente (Statefull)
+  - Substituir menu por ícone de favoritos
 
-9. Carrinho e item do Carrinho
+x 9. Carrinho e item do Carrinho
   - Definir modelos Cart e CartItem
   - Métodos para valor do carrinho, qtde de itens, etc
   - Disponibilizar o carrinho na árvore (ChangeNotiferProvider x MultiProvider)
   - Adicionar produto no carrinho ao clicar no ícone
-  - Adicionar ícone do carrinho do AppBar
+  - Adicionar ícone do carrinho no AppBar
 
-10. Criar badge sobre o ícone de carrinho
+x 10. Criar badge sobre o ícone de carrinho
   - Criar Badge widget (value, child, color)
   - Usar Stack (align.center)
-  - Posicionar o child do Badge com Positioned
-  - Usar Container para exibir e estilizar o valor
+  - Posicionar o child do Badge com Positioned (8,8)
+  - Usar Container para exibir e estilizar o valor (accentColor)
+  - Usar constrains para limitar Container (16,16)
   - Atualizar badge quando o estado do carrinho mudar (Wrap Badge com Consumer)
+  - Apresentar total do carrinho com toolTip
+
+11. Tela do Carrinho
+  - Criar esqueleto da página (CartPage)
+  - Inserir rota e navegação para a página

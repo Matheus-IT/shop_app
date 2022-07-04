@@ -9,6 +9,8 @@ class CartItem {
   final int quantity;
   final double price;
 
+  static int _nextId() => Random().nextInt(1000) + 1000;
+
   CartItem({
     required this.itemId,
     required this.productId,
@@ -17,14 +19,19 @@ class CartItem {
     required this.price,
   });
 
-  static int nextId() => Random().nextInt(1000) + 1000;
+  CartItem.from(CartItem item, {int newQuantity = 1})
+      : itemId = item.itemId,
+        productId = item.productId,
+        name = item.name,
+        price = item.price,
+        quantity = newQuantity;
 
-  factory CartItem.fromProduct(Product product, {int? quantity}) {
+  factory CartItem.fromProduct(Product product, {int quantity = 1}) {
     return CartItem(
-      itemId: nextId(),
+      itemId: _nextId(),
       productId: product.id,
       name: product.name,
-      quantity: quantity ?? 1,
+      quantity: quantity,
       price: product.price,
     );
   }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../core/app_routes.dart';
 import '../models/product.dart';
+import '../providers/cart_provider.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile();
@@ -11,6 +12,7 @@ class ProductTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final secondaryColor = Theme.of(context).colorScheme.secondary;
     final product = Provider.of<Product>(context);
+    final cart = Provider.of<CartProvider>(context);
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
@@ -32,7 +34,10 @@ class ProductTile extends StatelessWidget {
             },
           ),
           trailing: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              cart.addItem(product);
+              debugPrint('items: ${cart.itemCount}');
+            },
             icon: const Icon(Icons.shopping_cart),
             color: secondaryColor,
           ),
