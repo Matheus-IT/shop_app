@@ -8,6 +8,8 @@
             "name": "shop_app",
             "request": "launch",
             "type": "dart",
+            "args": ["--enable-software-rendering"],
             "program": "./lib/main.dart"
         }
+    ]
 }

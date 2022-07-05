@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:shop_app/models/product.dart';
+import 'package:shop_app/models/product_model.dart';
 
-class CartItem {
+class CartItemModel {
   final int itemId;
   final int productId;
   final String name;
@@ -11,7 +11,7 @@ class CartItem {
 
   static int _nextId() => Random().nextInt(1000) + 1000;
 
-  CartItem({
+  CartItemModel({
     required this.itemId,
     required this.productId,
     required this.name,
@@ -19,15 +19,15 @@ class CartItem {
     required this.price,
   });
 
-  CartItem.from(CartItem item, {int newQuantity = 1})
+  CartItemModel.from(CartItemModel item, {int newQuantity = 1})
       : itemId = item.itemId,
         productId = item.productId,
         name = item.name,
         price = item.price,
         quantity = newQuantity;
 
-  factory CartItem.fromProduct(Product product, {int quantity = 1}) {
-    return CartItem(
+  factory CartItemModel.fromProduct(ProductModel product, {int quantity = 1}) {
+    return CartItemModel(
       itemId: _nextId(),
       productId: product.id,
       name: product.name,
@@ -35,4 +35,6 @@ class CartItem {
       price: product.price,
     );
   }
+
+  double get total => quantity * price;
 }

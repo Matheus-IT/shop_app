@@ -15,16 +15,16 @@ class ShopApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<ProductProvider>(create: (_) => ProductProvider()),
-        Provider<CartProvider>(create: (_) => CartProvider()),
+        ChangeNotifierProvider<ProductProvider>(
+            create: (_) => ProductProvider()),
+        ChangeNotifierProvider<CartProvider>(create: (_) => CartProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.purple,
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: Colors.deepOrange,
-          ),
+          // ignore: deprecated_member_use
+          accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
         initialRoute: AppRoutes.productOverview,

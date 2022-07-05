@@ -6,11 +6,6 @@ import '../providers/cart_provider.dart';
 import '../widgets/badge_cart.dart';
 import '../widgets/product_grid.dart';
 
-enum FavoriteOption {
-  favorite,
-  all,
-}
-
 class ProductOverviewPage extends StatefulWidget {
   @override
   State<ProductOverviewPage> createState() => _ProductOverviewPageState();
@@ -22,6 +17,8 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
   @override
   Widget build(BuildContext context) {
     final hint = _favoritesOnly ? 'todos os produtos' : 'os produtos favoritos';
+
+    //debugPrint('_ProductOverviewPageState.build()');
 
     return Scaffold(
       appBar: AppBar(
@@ -37,10 +34,10 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
             icon: Icon(_favoritesOnly ? Icons.favorite : Icons.favorite_border),
           ),
           Consumer<CartProvider>(
-            builder: (context, cart, child) {
-              debugPrint('Consumer<CartProvider>: ${cart.itemCount}');
+            builder: (context, cart, _) {
+              //debugPrint('Consumer<CartProvider>: ${cart.itemCount}');
               return BadgeCart(
-                value: cart.quantityCount,
+                value: cart.itemCount,
                 child: IconButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed(AppRoutes.cart);
@@ -61,6 +58,10 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
 
 
 /*
+enum FavoriteOption {
+  favorite,
+  all,
+}
 PopupMenuButton<FavoriteOption>(
   itemBuilder: (context) => [
     const PopupMenuItem<FavoriteOption>(

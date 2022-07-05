@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../core/app_routes.dart';
-import '../models/product.dart';
+import '../models/product_model.dart';
 import '../providers/cart_provider.dart';
 
 class ProductTile extends StatelessWidget {
@@ -11,17 +11,19 @@ class ProductTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final secondaryColor = Theme.of(context).colorScheme.secondary;
-    final product = Provider.of<Product>(context);
-    final cart = Provider.of<CartProvider>(context);
+    final product = Provider.of<ProductModel>(context, listen: false);
+    final cart = Provider.of<CartProvider>(context, listen: false);
+
+    //debugPrint('ProductTile.build()');
 
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
       child: GridTile(
         footer: GridTileBar(
           backgroundColor: Colors.black87,
-          leading: Consumer<Product>(
-            builder: (context, prod, _) {
-              //debugPrint('Product(${prod.name}, ${prod.isFavorite}');
+          leading: Consumer<ProductModel>(
+            builder: (context, product, _) {
+              //debugPrint('Consumer.Product(${product.name}, ${product.isFavorite}');
               return IconButton(
                 onPressed: () {
                   product.toggleFavorite();

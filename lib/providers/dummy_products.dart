@@ -1,7 +1,7 @@
-import '../models/product.dart';
+import '../models/product_model.dart';
 
 final dummyData = [
-  Product(
+  ProductModel(
     id: 1010,
     name: 'Camisa Vermelha',
     description: 'Uma camisa vermelha - Bem vermelhinha!',
@@ -9,7 +9,7 @@ final dummyData = [
     imageUrl:
         'https://cdn.pixabay.com/photo/2016/10/02/22/17/red-t-shirt-1710578_1280.jpg',
   ),
-  Product(
+  ProductModel(
     id: 1022,
     name: 'Calça Jeans Preta',
     description: 'Calça jeans preta com elastano',
@@ -17,7 +17,7 @@ final dummyData = [
     imageUrl:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Trousers%2C_dress_%28AM_1960.022-8%29.jpg/512px-Trousers%2C_dress_%28AM_1960.022-8%29.jpg',
   ),
-  Product(
+  ProductModel(
     id: 2190,
     name: 'Escarfe Amarela',
     description:
@@ -25,7 +25,7 @@ final dummyData = [
     price: 19.99,
     imageUrl: 'https://live.staticflickr.com/4043/4438260868_cc79b3369d_z.jpg',
   ),
-  Product(
+  ProductModel(
     id: 2498,
     name: 'Frigideira',
     description: 'Prepare qualquer refeição que desejar.',

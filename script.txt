@@ -39,6 +39,36 @@ x 10. Criar badge sobre o ícone de carrinho
   - Atualizar badge quando o estado do carrinho mudar (Wrap Badge com Consumer)
   - Apresentar total do carrinho com toolTip
 
-11. Tela do Carrinho
+x 11. Tela do Carrinho
   - Criar esqueleto da página (CartPage)
   - Inserir rota e navegação para a página
+  - Usar Card, Chip e Spacer
+  - Criar lista de itens do carrinho com ListView.builder()
+
+x 12. Item do carrinho CartItem
+  - Criar como ListTile
+    . title, subtitle, trailing: Text
+    . leading: CircleAvatar(child: FittedBox)
+  - Wrap ListTile with Card
+
+x 13. Remoção do item do carrinho
+  - Warp Card with Dismissible
+  - Definir direction do Dismissible
+  - Definir cor de fundo do Dismissible
+  - Remover produto do carrinho
+
+14. Detalhe de produto (ProductDetailPage)
+  - Wrap com SingleChildScrollview
+  - Título com nome do produto
+  - Coluna com imagem, preço e descrição
+
+15. Pedido (OrderPage)
+  - Criar modelo OrderModel
+  - Criar provider OrderProvider
+    . Criar método addOrder
+  - Registrar provider OrderProvider
+  - Criar pedido ao clicar no botão "COMPRAR"
+  - Criar nova rota '/orders'
+
+16. Drawer
+  -
