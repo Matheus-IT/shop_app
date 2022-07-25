@@ -57,18 +57,42 @@ x 13. Remoção do item do carrinho
   - Definir cor de fundo do Dismissible
   - Remover produto do carrinho
 
-14. Detalhe de produto (ProductDetailPage)
-  - Wrap com SingleChildScrollview
-  - Título com nome do produto
-  - Coluna com imagem, preço e descrição
-
-15. Pedido (OrderPage)
+x 14. Pedido
   - Criar modelo OrderModel
   - Criar provider OrderProvider
     . Criar método addOrder
   - Registrar provider OrderProvider
   - Criar pedido ao clicar no botão "COMPRAR"
-  - Criar nova rota '/orders'
 
-16. Drawer
-  -
+x 15. Detalhe de produto (ProductDetailPage)
+  - Wrap com SingleChildScrollview
+  - Título com nome do produto
+  - Coluna com imagem, preço e descrição
+
+x 16. Drawer
+  - Criar o widget AppDrawer
+    . Loja
+    . Pedidos
+  - Incluir AppDrawer em OrderPage e ProductOverviewPage
+
+x 17. Página de pedidos
+  - Criar OrderPage
+  - Criar nova rota '/orders'
+  - ListView de OrderItem
+  - OrderItem = Card + ListTile
+  - Função de expandir/retrair o OrderItem
+
+x 18. Melhoramentos
+  - Snackbar para confirmar adição de produto no carrinho
+  - Confirmação antes de remover item do carrinho (showDialog)
+
+19. Gerenciamento de produtos
+  - Criar ProductManagerPage
+  - Criar rota '/products'
+  - Adicionar item 'Gerenciar Produtos' no AppDrawer
+  - Adicional AppDrawer em ProductManagerPage
+  - Criar lista de produtos com ListView e ListTile
+  - Criar ProductItem como item de ListView
+    . botão de edição
+    . botão de remoção
+  - Criar ação de criar produto no AppBar

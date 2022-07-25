@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../core/app_routes.dart';
-import '../models/product_model.dart';
-import '../providers/cart_provider.dart';
+import '../../core/app_routes.dart';
+import '../../models/product_model.dart';
+import '../../providers/cart_provider.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile();
@@ -14,8 +14,6 @@ class ProductTile extends StatelessWidget {
     final product = Provider.of<ProductModel>(context, listen: false);
     final cart = Provider.of<CartProvider>(context, listen: false);
 
-    //debugPrint('ProductTile.build()');
-
     return ClipRRect(
       borderRadius: BorderRadius.circular(10.0),
       child: GridTile(
@@ -23,7 +21,6 @@ class ProductTile extends StatelessWidget {
           backgroundColor: Colors.black87,
           leading: Consumer<ProductModel>(
             builder: (context, product, _) {
-              //debugPrint('Consumer.Product(${product.name}, ${product.isFavorite}');
               return IconButton(
                 onPressed: () {
                   product.toggleFavorite();
@@ -38,7 +35,19 @@ class ProductTile extends StatelessWidget {
           trailing: IconButton(
             onPressed: () {
               cart.addItem(product);
-              debugPrint('items: ${cart.itemCount}');
+
+              final messenger = ScaffoldMessenger.of(context);
+              messenger.hideCurrentSnackBar();
+              messenger.showSnackBar(SnackBar(
+                content: Text('"${product.name}" adicionado(a) ao carrinho'),
+                duration: const Duration(milliseconds: 1500),
+                action: SnackBarAction(
+                  label: 'DESFAZER',
+                  onPressed: () {
+                    cart.removeSingleItem(product.id);
+                  },
+                ),
+              ));
             },
             icon: const Icon(Icons.shopping_cart),
             color: secondaryColor,
@@ -49,6 +58,7 @@ class ProductTile extends StatelessWidget {
           onTap: () {
             Navigator.of(context).pushNamed(
               AppRoutes.productDetail,
+              arguments: product,
             );
           },
           child: Image.network(

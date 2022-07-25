@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/cart_item_model.dart';
-import '../providers/cart_provider.dart';
+import '../../models/cart_item_model.dart';
+import '../../providers/cart_provider.dart';
 
 class CartItem extends StatelessWidget {
   final CartItemModel cartItem;
@@ -17,6 +17,33 @@ class CartItem extends StatelessWidget {
       onDismissed: (_) {
         final cart = Provider.of<CartProvider>(context, listen: false);
         cart.removeItem(cartItem.productId);
+      },
+      confirmDismiss: (_) {
+        debugPrint('** showDialog: ANTES');
+        final result = showDialog<bool>(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: const Text('Confirmação de remoção'),
+            content: const Text(
+                'Tem certeza que deseja remover o item do carrinho?'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(false);
+                },
+                child: const Text('NÃO'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(true);
+                },
+                child: const Text('SIM'),
+              ),
+            ],
+          ),
+        );
+        debugPrint('** showDialog: DEPOIS');
+        return result;
       },
       background: Container(
         color: Theme.of(context).errorColor,

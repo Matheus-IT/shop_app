@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/product_provider.dart';
-import './product_tile.dart';
+import '../../providers/product_provider.dart';
+import 'product_tile.dart';
 
 class ProductGrid extends StatelessWidget {
   final bool favoritesOnly;
@@ -13,8 +13,8 @@ class ProductGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     final provider = Provider.of<ProductProvider>(context);
     final products = favoritesOnly
-        ? provider.products.where((product) => product.isFavorite).toList()
-        : provider.products;
+        ? provider.items.where((product) => product.isFavorite).toList()
+        : provider.items;
 
     return GridView.builder(
       itemCount: products.length,

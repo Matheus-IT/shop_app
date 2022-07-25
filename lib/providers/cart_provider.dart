@@ -23,6 +23,11 @@ class CartProvider extends ChangeNotifier {
     return sum;
   }
 
+  void clear() {
+    _cart.clear();
+    notifyListeners();
+  }
+
   void addItem(ProductModel product) {
     _cart.update(
       product.id,
@@ -35,5 +40,26 @@ class CartProvider extends ChangeNotifier {
   void removeItem(int key) {
     _cart.remove(key);
     notifyListeners();
+  }
+
+  void removeSingleItem(int key) {
+    if (!_cart.containsKey(key)) {
+      return;
+    }
+    if (_cart[key]!.quantity > 1) {
+      _cart.update(
+        key,
+        (cartItem) => CartItemModel(
+          itemId: cartItem.itemId,
+          productId: cartItem.productId,
+          name: cartItem.name,
+          quantity: cartItem.quantity - 1,
+          price: cartItem.price,
+        ),
+      );
+      notifyListeners();
+    } else {
+      removeItem(key);
+    }
   }
 }

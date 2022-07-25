@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../core/app_routes.dart';
-import '../providers/cart_provider.dart';
-import '../widgets/badge_cart.dart';
-import '../widgets/product_grid.dart';
+import '../../core/app_routes.dart';
+import '../../providers/cart_provider.dart';
+import '../widgets/app_drawer.dart';
+import 'badge_cart.dart';
+import 'product_grid.dart';
 
 class ProductOverviewPage extends StatefulWidget {
   @override
@@ -50,6 +51,7 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
           ),
         ],
       ),
+      drawer: const AppDrawer(),
       body: ProductGrid(favoritesOnly: _favoritesOnly),
     );
   }

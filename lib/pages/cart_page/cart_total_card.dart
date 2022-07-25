@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/cart_provider.dart';
+import '../../core/app_routes.dart';
+import '../../providers/cart_provider.dart';
+import '../../providers/order_provider.dart';
 
 class CartTotalCard extends StatelessWidget {
   const CartTotalCard({
     Key? key,
   }) : super(key: key);
+
+  void _addOrder(BuildContext context, CartProvider cart) {
+    final orders = Provider.of<OrderProvider>(context, listen: false);
+    orders.addOrder(cart);
+    cart.clear();
+
+    Navigator.of(context).pushReplacementNamed(AppRoutes.orders);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +51,13 @@ class CartTotalCard extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            TextButton(
-              onPressed: () {},
-              child: const Text('COMPRAR'),
+            Consumer<CartProvider>(
+              builder: (context, cart, _) => TextButton(
+                onPressed: (cart.itemCount > 0)
+                    ? () => _addOrder(context, cart)
+                    : null,
+                child: const Text('COMPRAR'),
+              ),
             ),
           ],
         ),
