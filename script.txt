@@ -88,7 +88,7 @@ x 18. Melhoramentos
 
 19. Gerenciamento de produtos
   - Criar ProductManagerPage
-  - Criar rota '/products'
+  - Criar rota '/productManager'
   - Adicionar item 'Gerenciar Produtos' no AppDrawer
   - Adicional AppDrawer em ProductManagerPage
   - Criar lista de produtos com ListView e ListTile
@@ -96,3 +96,10 @@ x 18. Melhoramentos
     . botão de edição
     . botão de remoção
   - Criar ação de criar produto no AppBar
+
+20. Cadastro/Alteração de Produtos
+  - Criar ProductPage
+  - Criar rota '/productForm'
+  - Criar formulário de edição
+  - Inserir controle de foco
+  - Dispose focus objects

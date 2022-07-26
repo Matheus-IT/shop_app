@@ -7,4 +7,6 @@ class ProductProvider extends ChangeNotifier {
   final List<ProductModel> _products = [...dummyData];
 
   List<ProductModel> get items => _products;
+
+  void addProduct(Map<String, dynamic> data) {}
 }
