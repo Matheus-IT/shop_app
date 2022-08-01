@@ -86,7 +86,7 @@ x 18. Melhoramentos
   - Snackbar para confirmar adição de produto no carrinho
   - Confirmação antes de remover item do carrinho (showDialog)
 
-19. Gerenciamento de produtos
+x 19. Gerenciamento de produtos
   - Criar ProductManagerPage
   - Criar rota '/productManager'
   - Adicionar item 'Gerenciar Produtos' no AppDrawer
@@ -97,9 +97,40 @@ x 18. Melhoramentos
     . botão de remoção
   - Criar ação de criar produto no AppBar
 
-20. Cadastro/Alteração de Produtos
+x 20. Cadastro/Alteração de Produtos
   - Criar ProductPage
   - Criar rota '/productForm'
   - Criar formulário de edição
   - Inserir controle de foco
-  - Dispose focus objects
+  - Dispose objects
+  - Editar produtos
+
+# IMAGENS
+https://m.media-amazon.com/images/I/61AjRsLcIXL._AC_SX569_.jpg
+
+21. Requisições HTTP
+  - Tipos de armazenamento de dados: local / remoto
+    . local: persistência, offine, apenas no dispositivo
+    . remoto: persistência, online, múltiplos usuários, internet
+  - Conexão com banco de dados
+    . local ou remoto
+    . remoto: é recomendável usar uma API (web service) para acessar o banco
+    . remoto: tipicamente REST API ou RPC API
+  - Firebase com BaaS (Back-end as a Service)
+    . Firebase console
+    . Build / Realtime database
+    . Copiar URL da API
+  - Requisições REST
+    . VERBO + URL --> AÇÃO
+  - Verbos HTTP
+    . GET: obter dados
+    . POST: inserir dados
+    . PATCH: atualizar dados (objeto inteiro)
+    . PUT: atualizar dados (parte do objeto)
+    . DELETE: remover dados
+
+22. Requisições POST
+  - Instalar pacote http
+
+23. Futures
+  - Codificação assíncrona

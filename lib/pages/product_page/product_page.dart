@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../models/product_model.dart';
+import '../../providers/product_provider.dart';
 
 class ProductPage extends StatefulWidget {
   const ProductPage({Key? key}) : super(key: key);
@@ -15,13 +19,60 @@ class _ProductPageState extends State<ProductPage> {
   final _priceController = TextEditingController();
   final _urlController = TextEditingController();
 
+  int? _productId;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    _init();
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descController.dispose();
+    _priceController.dispose();
+    _urlController.dispose();
+
+    super.dispose();
+  }
+
+  void _init() {
+    final args = ModalRoute.of(context)?.settings.arguments;
+    if (args == null) {
+      _productId = null;
+      return;
+    }
+
+    final product = args as ProductModel;
+
+    _productId = product.id;
+    _nameController.text = product.name;
+    _descController.text = product.description;
+    _priceController.text =
+        product.price.toStringAsFixed(2).replaceAll('.', ',');
+    _urlController.text = product.imageUrl;
+  }
+
   void _submit() {
     if (_formKey.currentState?.validate() != true) {
       return;
     }
 
-    final productData = Map<String, dynamic>();
-    final productData1 = <String, dynamic>{};
+    final productData = <String, dynamic>{};
+
+    productData['id'] = _productId;
+    productData['name'] = _nameController.text.trim();
+    productData['description'] = _descController.text.trim();
+    productData['price'] =
+        double.parse(_priceController.text.replaceAll(',', '.'));
+    productData['imageUrl'] = _urlController.text;
+
+    final products = Provider.of<ProductProvider>(context, listen: false);
+    products.saveProduct(productData);
+
+    Navigator.of(context).pop();
   }
 
   String? _textFieldValidator(String? text, String fieldName, int minLength) {
