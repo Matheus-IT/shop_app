@@ -31,7 +31,7 @@ class ProductItem extends StatelessWidget {
       if (removeProduct == true) {
         Provider.of<ProductProvider>(
           context,
-          listen: false,
+          listen: true,
         ).removeProduct(product.id);
       }
     });

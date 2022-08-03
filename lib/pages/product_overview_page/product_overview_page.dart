@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../../core/app_routes.dart';
 import '../../providers/cart_provider.dart';
+import '../../providers/product_provider.dart';
 import '../widgets/app_drawer.dart';
 import 'badge_cart.dart';
 import 'product_grid.dart';
@@ -16,10 +17,16 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
   bool _favoritesOnly = false;
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    final products = Provider.of<ProductProvider>(context);
+    products.loadProduct();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final hint = _favoritesOnly ? 'todos os produtos' : 'os produtos favoritos';
-
-    //debugPrint('_ProductOverviewPageState.build()');
 
     return Scaffold(
       appBar: AppBar(
@@ -36,7 +43,6 @@ class _ProductOverviewPageState extends State<ProductOverviewPage> {
           ),
           Consumer<CartProvider>(
             builder: (context, cart, _) {
-              //debugPrint('Consumer<CartProvider>: ${cart.itemCount}');
               return BadgeCart(
                 value: cart.itemCount,
                 child: IconButton(
@@ -79,7 +85,6 @@ PopupMenuButton<FavoriteOption>(
     setState(() {
       _favoritesOnly = option == FavoriteOption.favorite;
     });
-    debugPrint('favorites=$_favoritesOnly');
   },
 ),
 */

@@ -19,7 +19,6 @@ class CartItem extends StatelessWidget {
         cart.removeItem(cartItem.productId);
       },
       confirmDismiss: (_) {
-        debugPrint('** showDialog: ANTES');
         final result = showDialog<bool>(
           context: context,
           builder: (context) => AlertDialog(
@@ -42,7 +41,6 @@ class CartItem extends StatelessWidget {
             ],
           ),
         );
-        debugPrint('** showDialog: DEPOIS');
         return result;
       },
       background: Container(

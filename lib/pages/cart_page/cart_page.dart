@@ -13,8 +13,6 @@ class CartPage extends StatelessWidget {
     final cart = Provider.of<CartProvider>(context);
     final cartItems = cart.items.values.toList();
 
-    debugPrint('items: $cartItems');
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Carrinho de Compras'),

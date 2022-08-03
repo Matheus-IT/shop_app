@@ -108,7 +108,7 @@ x 20. Cadastro/Alteração de Produtos
 # IMAGENS
 https://m.media-amazon.com/images/I/61AjRsLcIXL._AC_SX569_.jpg
 
-21. Requisições HTTP
+x 21. Requisições HTTP
   - Tipos de armazenamento de dados: local / remoto
     . local: persistência, offine, apenas no dispositivo
     . remoto: persistência, online, múltiplos usuários, internet

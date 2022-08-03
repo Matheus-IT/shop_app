@@ -19,7 +19,7 @@ class _ProductPageState extends State<ProductPage> {
   final _priceController = TextEditingController();
   final _urlController = TextEditingController();
 
-  int? _productId;
+  String? _productId;
 
   @override
   void didChangeDependencies() {
@@ -69,7 +69,10 @@ class _ProductPageState extends State<ProductPage> {
         double.parse(_priceController.text.replaceAll(',', '.'));
     productData['imageUrl'] = _urlController.text;
 
-    final products = Provider.of<ProductProvider>(context, listen: false);
+    final products = Provider.of<ProductProvider>(
+      context,
+      listen: false,
+    );
     products.saveProduct(productData);
 
     Navigator.of(context).pop();
@@ -124,8 +127,6 @@ class _ProductPageState extends State<ProductPage> {
 
   @override
   Widget build(BuildContext context) {
-    debugPrint('***** build()');
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cadastro de Produto'),

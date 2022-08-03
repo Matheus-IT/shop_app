@@ -1,15 +1,13 @@
-import 'dart:math';
-
 import 'package:shop_app/models/product_model.dart';
 
 class CartItemModel {
-  final int itemId;
-  final int productId;
+  final String itemId;
+  final String productId;
   final String name;
   final int quantity;
   final double price;
 
-  static int _nextId() => Random().nextInt(1000) + 1000;
+  static String _nextId() => DateTime.now().millisecondsSinceEpoch.toString();
 
   CartItemModel({
     required this.itemId,

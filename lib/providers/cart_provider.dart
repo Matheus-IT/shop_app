@@ -4,10 +4,10 @@ import '../models/cart_item_model.dart';
 import '../models/product_model.dart';
 
 class CartProvider extends ChangeNotifier {
-  final Map<int, CartItemModel> _cart = {};
+  final Map<String, CartItemModel> _cart = {};
 
   int get itemCount => _cart.length;
-  Map<int, CartItemModel> get items => _cart;
+  Map<String, CartItemModel> get items => _cart;
 
   int get quantityCount {
     int total = 0;
@@ -37,12 +37,12 @@ class CartProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeItem(int key) {
+  void removeItem(String key) {
     _cart.remove(key);
     notifyListeners();
   }
 
-  void removeSingleItem(int key) {
+  void removeSingleItem(String key) {
     if (!_cart.containsKey(key)) {
       return;
     }
