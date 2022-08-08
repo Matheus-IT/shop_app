@@ -12,6 +12,8 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
+  bool _inProgress = false;
+
   final _formKey = GlobalKey<FormState>();
 
   final _nameController = TextEditingController();
@@ -73,9 +75,13 @@ class _ProductPageState extends State<ProductPage> {
       context,
       listen: false,
     );
-    products.saveProduct(productData);
 
-    Navigator.of(context).pop();
+    setState(() {
+      _inProgress = true;
+    });
+    products.saveProduct(productData).then((_) {
+      Navigator.of(context).pop();
+    });
   }
 
   String? _textFieldValidator(String? text, String fieldName, int minLength) {
@@ -137,72 +143,75 @@ class _ProductPageState extends State<ProductPage> {
           ),
         ],
       ),
-      body: Form(
-        key: _formKey,
-        child: ListView(
-          padding: const EdgeInsets.all(10.0),
-          children: [
-            TextFormField(
-              controller: _nameController,
-              decoration: const InputDecoration(labelText: 'Nome'),
-              keyboardType: TextInputType.text,
-              textInputAction: TextInputAction.next,
-              validator: (name) => _textFieldValidator(name, 'nome', 4),
-            ),
-            TextFormField(
-              controller: _priceController,
-              decoration: const InputDecoration(labelText: 'Preço'),
-              keyboardType: const TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              textInputAction: TextInputAction.next,
-              validator: _priceFieldValidator,
-            ),
-            TextFormField(
-              controller: _descController,
-              decoration: const InputDecoration(labelText: 'Descrição'),
-              maxLines: 3,
-              keyboardType: TextInputType.multiline,
-              textInputAction: TextInputAction.next,
-              validator: (desc) => _textFieldValidator(desc, 'descrição', 10),
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    controller: _urlController,
-                    decoration:
-                        const InputDecoration(labelText: 'URL da imagem'),
-                    keyboardType: TextInputType.url,
-                    onChanged: (url) {
-                      setState(() {});
-                    },
-                    validator: _urlFieldValidator,
+      body: _inProgress
+          ? const Center(child: CircularProgressIndicator())
+          : Form(
+              key: _formKey,
+              child: ListView(
+                padding: const EdgeInsets.all(10.0),
+                children: [
+                  TextFormField(
+                    controller: _nameController,
+                    decoration: const InputDecoration(labelText: 'Nome'),
+                    keyboardType: TextInputType.text,
+                    textInputAction: TextInputAction.next,
+                    validator: (name) => _textFieldValidator(name, 'nome', 4),
                   ),
-                ),
-                Container(
-                  height: 100.0,
-                  width: 100.0,
-                  margin: const EdgeInsets.only(
-                    top: 10.0,
-                    left: 10.0,
-                  ),
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.grey,
+                  TextFormField(
+                    controller: _priceController,
+                    decoration: const InputDecoration(labelText: 'Preço'),
+                    keyboardType: const TextInputType.numberWithOptions(
+                      decimal: true,
                     ),
+                    textInputAction: TextInputAction.next,
+                    validator: _priceFieldValidator,
                   ),
-                  alignment: Alignment.center,
-                  child: _urlFieldValidator(_urlController.text) == null
-                      ? Image.network(_urlController.text)
-                      : const Text('Sem Imagem'),
-                ),
-              ],
+                  TextFormField(
+                    controller: _descController,
+                    decoration: const InputDecoration(labelText: 'Descrição'),
+                    maxLines: 3,
+                    keyboardType: TextInputType.multiline,
+                    textInputAction: TextInputAction.next,
+                    validator: (desc) =>
+                        _textFieldValidator(desc, 'descrição', 10),
+                  ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          controller: _urlController,
+                          decoration:
+                              const InputDecoration(labelText: 'URL da imagem'),
+                          keyboardType: TextInputType.url,
+                          onChanged: (url) {
+                            setState(() {});
+                          },
+                          validator: _urlFieldValidator,
+                        ),
+                      ),
+                      Container(
+                        height: 100.0,
+                        width: 100.0,
+                        margin: const EdgeInsets.only(
+                          top: 10.0,
+                          left: 10.0,
+                        ),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        alignment: Alignment.center,
+                        child: _urlFieldValidator(_urlController.text) == null
+                            ? Image.network(_urlController.text)
+                            : const Text('Sem Imagem'),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
     );
   }
 }

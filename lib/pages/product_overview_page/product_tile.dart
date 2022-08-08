@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../core/app_routes.dart';
 import '../../models/product_model.dart';
 import '../../providers/cart_provider.dart';
+import '../../providers/product_provider.dart';
 
 class ProductTile extends StatelessWidget {
   const ProductTile();
@@ -23,7 +24,10 @@ class ProductTile extends StatelessWidget {
             builder: (context, product, _) {
               return IconButton(
                 onPressed: () {
-                  product.toggleFavorite();
+                  Provider.of<ProductProvider>(
+                    context,
+                    listen: false,
+                  ).toogleProductFavoriteState(product);
                 },
                 icon: Icon(
                   product.isFavorite ? Icons.favorite : Icons.favorite_border,

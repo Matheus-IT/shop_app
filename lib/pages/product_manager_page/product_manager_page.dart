@@ -7,13 +7,24 @@ import '../widgets/app_drawer.dart';
 import 'product_item.dart';
 
 class ProductManagerPage extends StatelessWidget {
-  const ProductManagerPage({Key? key}) : super(key: key);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  ProductManagerPage({Key? key}) : super(key: key);
+
+  Future<void> _reloadProducts(BuildContext context) {
+    final products = Provider.of<ProductProvider>(
+      context,
+      listen: false,
+    );
+    return products.loadProducts();
+  }
 
   @override
   Widget build(BuildContext context) {
     final products = Provider.of<ProductProvider>(context);
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: const Text('Gerenciamento de Produtos'),
         actions: [
@@ -26,12 +37,18 @@ class ProductManagerPage extends StatelessWidget {
         ],
       ),
       drawer: const AppDrawer(),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(10.0),
-        itemCount: products.items.length,
-        itemBuilder: (context, index) {
-          return ProductItem(products.items[index]);
-        },
+      body: RefreshIndicator(
+        onRefresh: () => _reloadProducts(context),
+        child: ListView.builder(
+          padding: const EdgeInsets.all(10.0),
+          itemCount: products.items.length,
+          itemBuilder: (context, index) {
+            return ProductItem(
+              scaffoldKey: _scaffoldKey,
+              product: products.items[index],
+            );
+          },
+        ),
       ),
     );
   }

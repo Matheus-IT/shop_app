@@ -36,7 +36,7 @@ class ShopApp extends StatelessWidget {
         routes: {
           AppRoutes.productOverview: (_) => ProductOverviewPage(),
           AppRoutes.productDetail: (_) => ProductDetailPage(),
-          AppRoutes.productManager: (_) => const ProductManagerPage(),
+          AppRoutes.productManager: (_) => ProductManagerPage(),
           AppRoutes.productEdit: (_) => const ProductPage(),
           AppRoutes.cart: (_) => const CartPage(),
           AppRoutes.orders: (_) => const OrderPage(),

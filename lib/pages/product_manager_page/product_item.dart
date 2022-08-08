@@ -6,11 +6,18 @@ import '../../core/app_routes.dart';
 import '../../models/product_model.dart';
 
 class ProductItem extends StatelessWidget {
+  final GlobalKey<ScaffoldState> scaffoldKey;
   final ProductModel product;
 
-  const ProductItem(this.product, {Key? key}) : super(key: key);
+  const ProductItem({
+    required this.product,
+    required this.scaffoldKey,
+    Key? key,
+  }) : super(key: key);
 
-  void _removeProduct(BuildContext context) {
+  void _removeProduct() {
+    final context = scaffoldKey.currentContext!;
+
     showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -31,8 +38,21 @@ class ProductItem extends StatelessWidget {
       if (removeProduct == true) {
         Provider.of<ProductProvider>(
           context,
-          listen: true,
-        ).removeProduct(product.id);
+          listen: false,
+        ).removeProduct(product.id).then((_) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Produto removido com sucesso'),
+            ),
+          );
+        }).catchError((error) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              backgroundColor: Theme.of(context).errorColor,
+              content: const Text('Erro ao remover o produto'),
+            ),
+          );
+        });
       }
     });
   }
@@ -59,7 +79,7 @@ class ProductItem extends StatelessWidget {
               icon: const Icon(Icons.edit),
             ),
             IconButton(
-              onPressed: () => _removeProduct(context),
+              onPressed: _removeProduct,
               color: Theme.of(context).errorColor,
               icon: const Icon(Icons.delete_outline_outlined),
             ),

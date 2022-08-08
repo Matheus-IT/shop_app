@@ -105,9 +105,6 @@ x 20. Cadastro/Alteração de Produtos
   - Dispose objects
   - Editar produtos
 
-# IMAGENS
-https://m.media-amazon.com/images/I/61AjRsLcIXL._AC_SX569_.jpg
-
 x 21. Requisições HTTP
   - Tipos de armazenamento de dados: local / remoto
     . local: persistência, offine, apenas no dispositivo
@@ -129,8 +126,33 @@ x 21. Requisições HTTP
     . PUT: atualizar dados (parte do objeto)
     . DELETE: remover dados
 
-22. Requisições POST
+22. CRUD Produtos
   - Instalar pacote http
+  - Create: criar produto com POST
+    . Inserir spinner
+  - Retrieve: carregar produtos com GET
+    . Inserir spinner
+    . Implementar pull-to-refresh
+      - RefreshIndicator: overview e products pages
+  - Update: atualizar com PATCH
+    . Inserir spinner
+  - Delete: remover com DELETE
+    . Inserir spinner
+    . Levantar exceção quando ocorrer erro (tratar exceção c/ SnackBar)
 
-23. Futures
-  - Codificação assíncrona
+# IMAGENS
+https://m.media-amazon.com/images/I/61AjRsLcIXL._AC_SX569_.jpg
+https://cambuci.vteximg.com.br/arquivos/ids/451334-155-155/bola-play-off-mirim-530147-3300-1.jpg
+
+22. CRUD Pedidos
+  - Alterar tipo do id de pedido para string
+  - Create: criar com POST
+    . Inserir spinner
+  - Retrieve: carregar com GET
+    . Inserir spinner
+    . Implementar pull-to-refresh
+  - Update: atualizar com PATCH
+    . Inserir spinner
+  - Delete: remover com DELETE
+    . Inserir spinner
+  - Levantar exceção quando ocorrer erro (tratar exceção c/ SnackBar)
