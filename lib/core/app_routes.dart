@@ -1,5 +1,6 @@
 class AppRoutes {
-  static const productOverview = '/';
+  static const auth = '/auth';
+  static const productOverview = '/product/overview';
   static const productDetail = '/product/detail';
   static const productManager = '/product/manager';
   static const productEdit = '/product/edit';

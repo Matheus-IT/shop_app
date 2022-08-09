@@ -148,11 +148,19 @@ class ProductProvider extends ChangeNotifier {
   Future<void> toogleProductFavoriteState(ProductModel product) async {
     final favoriteState = product.toggleFavorite();
 
-    await http.patch(
+    final response = await http.patch(
       Uri.parse('$apiUrl/${product.id}.json'),
       body: jsonEncode({
         'isFavorite': favoriteState,
       }),
     );
+    if (response.statusCode >= 400) {
+      product.isFavorite = !favoriteState;
+
+      throw ApiException(
+        statusCode: response.statusCode,
+        message: 'Error updating product favorite state',
+      );
+    }
   }
 }

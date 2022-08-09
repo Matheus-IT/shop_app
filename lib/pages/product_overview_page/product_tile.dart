@@ -27,7 +27,15 @@ class ProductTile extends StatelessWidget {
                   Provider.of<ProductProvider>(
                     context,
                     listen: false,
-                  ).toogleProductFavoriteState(product);
+                  ).toogleProductFavoriteState(product).catchError((error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Theme.of(context).errorColor,
+                        content: const Text(
+                            'Erro ao atualizar o estado favorito do produto'),
+                      ),
+                    );
+                  });
                 },
                 icon: Icon(
                   product.isFavorite ? Icons.favorite : Icons.favorite_border,

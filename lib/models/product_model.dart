@@ -6,7 +6,7 @@ class ProductModel extends ChangeNotifier {
   final String description;
   final double price;
   final String imageUrl;
-  bool isFavorite;
+  bool _isFavorite;
 
   ProductModel({
     required this.id,
@@ -14,8 +14,15 @@ class ProductModel extends ChangeNotifier {
     required this.description,
     required this.price,
     required this.imageUrl,
-    this.isFavorite = false,
-  });
+    bool isFavorite = false,
+  }) : _isFavorite = isFavorite;
+
+  bool get isFavorite => _isFavorite;
+
+  set isFavorite(bool state) {
+    _isFavorite = state;
+    notifyListeners();
+  }
 
   factory ProductModel.from(
     ProductModel product, {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/pages/product_detail_page/product_detail_page.dart';
 
+import '../pages/auth_page/auth_page.dart';
 import '../pages/cart_page/cart_page.dart';
 import '../pages/order_page/order_page.dart';
 import '../pages/product_manager_page/product_manager_page.dart';
@@ -32,8 +33,9 @@ class ShopApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
-        initialRoute: AppRoutes.productOverview,
+        initialRoute: AppRoutes.auth,
         routes: {
+          AppRoutes.auth: (_) => const AuthPage(),
           AppRoutes.productOverview: (_) => ProductOverviewPage(),
           AppRoutes.productDetail: (_) => ProductDetailPage(),
           AppRoutes.productManager: (_) => ProductManagerPage(),
