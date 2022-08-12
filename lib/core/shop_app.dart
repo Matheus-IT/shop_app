@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/pages/product_detail_page/product_detail_page.dart';
 
-import '../pages/auth_page/auth_page.dart';
 import '../pages/cart_page/cart_page.dart';
+import '../pages/main_page/main_page.dart';
 import '../pages/order_page/order_page.dart';
 import '../pages/product_manager_page/product_manager_page.dart';
-import '../pages/product_overview_page/product_overview_page.dart';
 import '../pages/product_page/product_page.dart';
+import '../providers/auth_provider.dart';
 import '../providers/cart_provider.dart';
 import '../providers/order_provider.dart';
 import '../providers/product_provider.dart';
@@ -20,10 +20,22 @@ class ShopApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<ProductProvider>(
-            create: (_) => ProductProvider()),
-        ChangeNotifierProvider<CartProvider>(create: (_) => CartProvider()),
-        ChangeNotifierProvider<OrderProvider>(create: (_) => OrderProvider()),
+        ChangeNotifierProvider<AuthProvider>(
+          create: (_) => AuthProvider(),
+        ),
+        ChangeNotifierProxyProvider<AuthProvider, ProductProvider>(
+          create: (_) => ProductProvider(),
+          update: (_, auth, products) => ProductProvider(
+            auth: auth,
+            products: products?.items,
+          ),
+        ),
+        ChangeNotifierProvider<CartProvider>(
+          create: (_) => CartProvider(),
+        ),
+        ChangeNotifierProvider<OrderProvider>(
+          create: (_) => OrderProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -33,10 +45,9 @@ class ShopApp extends StatelessWidget {
           accentColor: Colors.deepOrange,
           fontFamily: 'Lato',
         ),
-        initialRoute: AppRoutes.auth,
+        initialRoute: AppRoutes.home,
         routes: {
-          AppRoutes.auth: (_) => const AuthPage(),
-          AppRoutes.productOverview: (_) => ProductOverviewPage(),
+          AppRoutes.home: (_) => const MainPage(),
           AppRoutes.productDetail: (_) => ProductDetailPage(),
           AppRoutes.productManager: (_) => ProductManagerPage(),
           AppRoutes.productEdit: (_) => const ProductPage(),

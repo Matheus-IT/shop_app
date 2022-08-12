@@ -28,9 +28,9 @@ class AuthPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const AuthLabel(),
-                const SizedBox(height: 15.0),
+              children: const [
+                AuthLabel(),
+                SizedBox(height: 15.0),
                 AuthCard(),
               ],
             ),
